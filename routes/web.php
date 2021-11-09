@@ -1,6 +1,8 @@
 <?php
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('app');
 });
+Route::get('form', function(){
+    return view('form.forms');
+});
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/contact',[HomeController::class, 'contact'])->name('contact');
+Route::post('postform', [FormController::class, 'postForm'])->name('post.form');
+Route::get('/form', [FormController::class, 'getForm'])->name('get.form');
